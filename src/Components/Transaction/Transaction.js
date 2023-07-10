@@ -13,16 +13,17 @@ export default function Transaction() {
 
   async function fetchTransaction() {
     try {
-      let result = await axios.get(
-        process.env.NODE_ENV === "production"
-          ? `https://backend-project-budgeting-app.onrender.com/transactions/${id}`
-          : `http://localhost:3001/transactions/${id}`
-      );
-      console.log(result);
-
-      setBudgetItemData(
-        result.data.data.budgetItem.newBudgetItemData || result.data.data
-      );
+      let result = await axios
+        .get(
+          process.env.NODE_ENV === "production"
+            ? `https://backend-project-budgeting-app.onrender.com/transactions/${id}`
+            : `http://localhost:3001/transactions/${id}`
+        )
+        .then((response) => {
+          console.log(response);
+          setBudgetItemData(response.data);
+          console.log(response.data);
+        });
     } catch (e) {
       console.log(e);
       return (

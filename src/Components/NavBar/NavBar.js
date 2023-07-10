@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <nav className="navbar navbar-expand-lg text-bg-danger p-2 font-link">
+    <nav className="navbar navbar-expand-lg text-bg-success p-2 font-link">
       <div className="container-fluid">
         <span className="navbar-brand text-light mb-0 h1">Budgtr</span>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -19,6 +19,9 @@ export default function NavBar() {
             >
               Create Transaction
             </Link>
+            <div className="text-bg-success p-2 font-link">
+              Calculator Total:
+            </div>
           </div>
         </div>
       </div>
