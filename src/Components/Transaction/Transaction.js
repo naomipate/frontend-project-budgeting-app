@@ -14,10 +14,15 @@ export default function Transaction() {
   async function fetchTransaction() {
     try {
       let result = await axios.get(
-        `https://backend-project-budgeting-app.onrender.com/transactions/${id}`
+        process.env.NODE_ENV === "production"
+          ? `https://backend-project-budgeting-app.onrender.com/transactions/${id}`
+          : `http://localhost:3001/transactions/${id}`
       );
+      console.log(result);
 
-      setBudgetItemData(result.data.data);
+      setBudgetItemData(
+        result.data.data.budgetItem.newBudgetItemData || result.data.data
+      );
     } catch (e) {
       console.log(e);
       return (

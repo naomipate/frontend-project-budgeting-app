@@ -7,9 +7,11 @@ export default function Transactions() {
 
   async function fetchTransactions() {
     try {
-      let result = await axios.get(
-        `https://backend-project-budgeting-app.onrender.com/transactions`
-      );
+      let URL =
+        process.env.NODE_ENV === "production"
+          ? "https://backend-project-budgeting-app.onrender.com/transactions"
+          : "http://localhost:3001/transactions";
+      let result = await axios.get(URL);
 
       setBudgetData(result.data);
     } catch (e) {
