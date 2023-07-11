@@ -13,16 +13,14 @@ export default function Transaction() {
 
   async function fetchTransaction() {
     try {
-      let result = await axios
+      await axios
         .get(
           process.env.NODE_ENV === "production"
             ? `https://backend-project-budgeting-app.onrender.com/transactions/${id}`
             : `http://localhost:3001/transactions/${id}`
         )
         .then((response) => {
-          console.log(response);
           setBudgetItemData(response.data);
-          console.log(response.data);
         });
     } catch (e) {
       console.log(e);
@@ -38,7 +36,7 @@ export default function Transaction() {
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">
-                  Transactions Not Found
+                  Transaction Not Found
                 </h1>
                 <button
                   type="button"
@@ -48,7 +46,7 @@ export default function Transaction() {
                 ></button>
               </div>
               <div class="modal-body">
-                <p>Oh No! Transactions not found! Please try again.</p>
+                <p>Oh No! Transaction not found! Please try again.</p>
               </div>
               <div class="modal-footer">
                 <button

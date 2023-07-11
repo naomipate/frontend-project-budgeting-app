@@ -14,7 +14,6 @@ export default function Transactions() {
       let result = await axios.get(URL);
 
       setBudgetData(result.data);
-      console.log(result.data);
     } catch (e) {
       console.log(e);
       return (

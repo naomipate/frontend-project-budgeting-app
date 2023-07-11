@@ -1,6 +1,23 @@
 # Budgtr App
 
-##
+This budget app is made to help you keep track of your finances by taking in your input on your finances so we can calculate where your money is going and when. That way can worry less and enjoy more out of life 😁
+
+## Trello, Github, and Render Links
+
+Trello: [Budgtr Trello Board](https://trello.com/invite/b/1tOUEfuB/ATTIa5f6819f74323a5fc885e17c202e77e4D1C5492B/budget-app)
+Github Backend: [Back End GitHub Repo](https://github.com/naomipate/backend-project-budgeting-app)
+Backend Deployed on: [Back End Render](https://backend-project-budgeting-app.onrender.com)
+Frontend Deployed on: [Front End Render](https://frontend-project-budgeting-app.onrender.com/transactions)
+
+### Setup Instructions
+
+In the home page where all the transactions are displayed, You can click on any of the transaction links to get a more detailed view.
+If you want to delete a transaction, just click the delete button.
+If you want to just fix something in a transaction item, click the edit button.
+If you'd like to make a new transaction to add to the list, click on the "Create Transaction" link on the navigation bar at the top of the page.
+On this page, you must fill out all the text boxes to submit a new transaction to the list.
+The new transaction will always be added to the bottom of the list.
+To go back to the home page, click "Budgtr".
 
 # Getting Started with Create React App
 
