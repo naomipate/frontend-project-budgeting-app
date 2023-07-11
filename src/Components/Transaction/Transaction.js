@@ -67,10 +67,10 @@ export default function Transaction() {
   }
 
   return (
-    <div>
+    <div className="mx-5">
       <h2 className="h2-title">{budgetItemData?.item_name}</h2>
       <div className="table-container">
-        <table id="logs">
+        <table class="table table-bordered" id="logs">
           <tbody>
             <tr>
               <th>Date</th>

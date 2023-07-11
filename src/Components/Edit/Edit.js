@@ -1,31 +1,77 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-function CreateTransaction() {
-  const [newBudgetItemData, setNewBudgetItemData] = React.useState({
-    date: "",
-    item_name: "",
-    amount: "",
-    from: "",
-    category: "",
-  });
+function Edit() {
+  const { id } = useParams();
+
+  const [budgetItemData, setBudgetItemData] = useState(null);
+
+  useEffect(() => {
+    fetchTransaction();
+  }, []);
+
+  async function fetchTransaction() {
+    try {
+      let result = await axios
+        .get(
+          process.env.NODE_ENV === "production"
+            ? `https://backend-project-budgeting-app.onrender.com/transactions/${id}`
+            : `http://localhost:3001/transactions/${id}`
+        )
+        .then((response) => {
+          console.log(response);
+          setBudgetItemData(response.data);
+          console.log(response.data);
+        });
+    } catch (e) {
+      console.log(e);
+      return (
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Transactions Not Found
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <p>Oh No! Transactions not found! Please try again.</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  }
   const navigate = useNavigate();
 
   //HELPER FUNCTIONS
   function handleChange(event) {
-    setNewBudgetItemData({
-      ...newBudgetItemData,
+    setBudgetItemData({
+      ...budgetItemData,
       [event.target.id]: event.target.value,
-    });
-  }
-  function resetForm(event) {
-    setNewBudgetItemData({
-      date: "",
-      item_name: "",
-      amount: 0,
-      from: "",
-      category: "",
     });
   }
 
@@ -33,15 +79,12 @@ function CreateTransaction() {
     e.preventDefault();
 
     try {
-      let result = await axios.post(
+      let result = await axios.put(
         process.env.NODE_ENV === "production"
-          ? "https://backend-project-budgeting-app.onrender.com/transactions"
-          : "http://localhost:3001/transactions",
-        newBudgetItemData
+          ? `https://backend-project-budgeting-app.onrender.com/transactions/${budgetItemData.id}`
+          : `http://localhost:3001/transactions/${budgetItemData.id}`,
+        budgetItemData
       );
-
-      // We reset the form and navigate back to the transactions page once the item has been created
-      resetForm();
       navigate(`/transactions/${result.data.id}`);
     } catch (e) {
       console.error(e);
@@ -90,10 +133,10 @@ function CreateTransaction() {
 
   return (
     <div>
-      <div>Create a New Transaction</div>
+      <div>Edit the Transaction</div>
       <div>
         <form onSubmit={handleSubmit}>
-          <h2>Create New Budget Item</h2>
+          <h2>Edit Budget Item</h2>
           <div className="table-container">
             <table id="logs">
               <tbody>
@@ -104,36 +147,31 @@ function CreateTransaction() {
                   <th>From</th>
                   <th>Category</th>
                 </tr>
-                <tr key={newBudgetItemData?.id}>
+                <tr key={budgetItemData?.id}>
                   <td>
-                    {" "}
                     <input
                       type="text"
-                      value={newBudgetItemData.date}
+                      value={budgetItemData?.date}
                       placeholder="YYYY-MM-DD"
                       onChange={(e) => handleChange(e)}
                       id="date"
                       required
                     />
                   </td>
-
                   <td>
-                    {" "}
                     <input
                       type="text"
-                      value={newBudgetItemData.item_name}
+                      value={budgetItemData?.item_name}
                       onChange={(e) => handleChange(e)}
                       placeholder="Monthly Income, Savings, etc."
                       id="item_name"
                       required
                     />
                   </td>
-
                   <td>
-                    {" "}
                     <input
                       type="number"
-                      value={newBudgetItemData.amount}
+                      value={budgetItemData?.amount}
                       placeholder="0.00"
                       onChange={(e) => handleChange(e)}
                       id="amount"
@@ -141,10 +179,9 @@ function CreateTransaction() {
                     />
                   </td>
                   <td>
-                    {" "}
                     <input
                       type="text"
-                      value={newBudgetItemData.from}
+                      value={budgetItemData?.from}
                       onChange={(e) => handleChange(e)}
                       placeholder="Employer, Shopping, etc."
                       id="from"
@@ -152,10 +189,9 @@ function CreateTransaction() {
                     />
                   </td>
                   <td>
-                    {" "}
                     <input
                       type="text"
-                      value={newBudgetItemData.category}
+                      value={budgetItemData?.category}
                       onChange={(e) => handleChange(e)}
                       placeholder="Travel, Groceries, Savings"
                       id="category"
@@ -173,4 +209,4 @@ function CreateTransaction() {
   );
 }
 
-export default CreateTransaction;
+export default Edit;

@@ -113,10 +113,10 @@ export default function Transactions() {
   }
 
   return (
-    <div>
+    <div className="mx-5">
       <h2 className="h2-title">Transactions</h2>
       <div className="table-container">
-        <table id="transactions">
+        <table class="table table-bordered" id="transactions">
           <tbody>
             <tr>
               <th>Date</th>
@@ -175,11 +175,19 @@ export default function Transactions() {
                   </td>
                   <td>
                     <button
-                      className="btn-bg-danger"
+                      className="text-bg-danger"
                       onClick={() => fetchDelete(item.id)}
                     >
                       Delete
                     </button>
+                  </td>
+                  <td className="text-bg-secondary">
+                    <Link
+                      className="text-decoration-none text-light"
+                      to={`/transactions/edit/${item.id}`}
+                    >
+                      Edit
+                    </Link>
                   </td>
                 </tr>
               );
