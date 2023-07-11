@@ -121,8 +121,6 @@ export default function Transactions() {
               <th>Date</th>
               <th>Transaction Name</th>
               <th>Amount</th>
-              <th>From</th>
-              <th>Category</th>
               <th>Delete</th>
               <th>Edit</th>
             </tr>
@@ -154,22 +152,6 @@ export default function Transactions() {
                       to={`/transactions/${item.id}`}
                     >
                       {item.amount}
-                    </Link>
-                  </td>
-                  <td>
-                    <Link
-                      className="budget-item-link"
-                      to={`/transactions/${item.id}`}
-                    >
-                      {item.from}
-                    </Link>
-                  </td>
-                  <td>
-                    <Link
-                      className="budget-item-link"
-                      to={`/transactions/${item.id}`}
-                    >
-                      {item.category}
                     </Link>
                   </td>
                   <td>
