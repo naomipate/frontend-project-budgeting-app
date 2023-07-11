@@ -15,7 +15,7 @@ function App() {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/transactions" element={<Transactions />} />
+        <Route path="/" element={<Transactions />} />
         <Route path="/transactions/:id" element={<Transaction />} />
         <Route path="/transactions/new" element={<CreateTransaction />} />
         <Route path="/transactions/edit/:id" element={<Edit />} />
