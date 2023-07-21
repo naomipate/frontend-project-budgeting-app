@@ -7,7 +7,7 @@ This budget app is made to help you keep track of your finances by taking in you
 Trello: [Budgtr Trello Board](https://trello.com/invite/b/1tOUEfuB/ATTIa5f6819f74323a5fc885e17c202e77e4D1C5492B/budget-app)
 Github Backend: [Back End GitHub Repo](https://github.com/naomipate/backend-project-budgeting-app)
 Backend Deployed on: [Back End Render](https://backend-project-budgeting-app.onrender.com)
-Frontend Deployed on: [Front End Render](https://frontend-project-budgeting-app.onrender.com/transactions)
+Frontend Deployed on: [Front End Render](https://frontend-project-budgeting-app.onrender.com/)
 
 ### Setup Instructions
 
